@@ -20,519 +20,168 @@
     
     <title>Space Waves - Exciting Space Adventure Game</title>
     
-    <!-- Preload Critical Assets -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tailwind CSS -->
+    <script src="assets/js/tailwind.js"></script>
+    <link href="assets/css/tailwind.css" rel="stylesheet">
     
-    <!-- Critical CSS -->
+    <!-- Custom Styles -->
     <style>
+        /* Custom colors */
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
             --accent-color: #e74c3c;
-            --text-color: #ecf0f1;
-            --background-dark: #1a1a2e;
-            --background-light: #16213e;
-        }
-
-        /* Reset & Base Styles */
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background: linear-gradient(135deg, var(--background-dark) 0%, var(--background-light) 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Performance Optimizations */
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Layout Components */
-        .header {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 1rem;
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .nav {
-            max-width: min(1200px, 90%);
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .hero-content {
-            max-width: min(800px, 90%);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--secondary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 1rem;
-            transition: transform 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-        }
-
-        section {
-            padding: 5rem 2rem;
-            max-width: min(1200px, 90%);
-            margin: 0 auto;
-        }
-
-        .game-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .game-iframe {
-            width: 100%;
-            height: 600px;
-            border: none;
-            border-radius: 10px;
-            margin: 2rem 3rem;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 2rem;
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        /* Accessibility & Focus States */
-        .cta-button:focus,
-        .logo:focus {
-            outline: 2px solid var(--accent-color);
-            outline-offset: 2px;
-        }
-
-        /* Media Queries */
-        @media (max-width: 768px) {
-            section {
-                padding: 3rem 1rem;
-            }
-
-            .game-iframe {
-                height: 400px;
-            }
-        }
-
-        /* Print Styles */
-        @media print {
-            .header,
-            .cta-button,
-            .game-iframe {
-                display: none;
-            }
-        }
-
-        /* Loading Animation */
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .loader {
-            width: 48px;
-            height: 48px;
-            border: 5px solid var(--secondary-color);
-            border-bottom-color: transparent;
-            border-radius: 50%;
-            animation: rotation 1s linear infinite;
-        }
-
-        @keyframes rotation {
-            0% { transform: rotate(0deg) }
-            100% { transform: rotate(360deg) }
-        }
-
-        /* Game Container Enhancement */
-        .game-container {
-            position: relative;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 0 30px rgba(52, 152, 219, 0.2);
-        }
-
-        /* Statistics Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            font-weight: bold;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-author {
-            color: var(--secondary-color);
-            font-weight: bold;
-        }
-
-        /* Newsletter Form */
-        .newsletter-form {
-            max-width: 500px;
-            margin: 2rem auto;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border: none;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-color);
-        }
-
-        /* FAQ Section */
-        .faq-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .faq-question {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .faq-answer {
-            padding: 1rem;
-            display: none;
-        }
-
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-
-        /* Social Share Buttons */
-        .social-share {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin: 2rem 0;
-        }
-
-        .share-button {
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .share-button.twitter {
-            background: #1DA1F2;
-        }
-
-        .share-button.facebook {
-            background: #4267B2;
+            --dark: #1a1a2e;
+            --light: #16213e;
         }
     </style>
 </head>
-<body>
-    <header class="header">
-        <nav class="nav">
-            <a href="/" class="logo" aria-label="Space Waves Home">Space Waves</a>
-            <div class="nav-links">
-                <a href="#game" class="cta-button">Play Now</a>
+<body class="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] text-white min-h-screen overflow-x-hidden">
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-black/80 backdrop-blur-lg">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-2xl md:text-3xl font-bold text-[#3498db]">Space Waves</a>
+                <div>
+                    <a href="#game" class="inline-block px-6 py-3 bg-[#3498db] text-white font-bold rounded-lg 
+                    transition duration-300 hover:-translate-y-1 hover:shadow-lg">Play Now</a>
+                </div>
             </div>
         </nav>
     </header>
 
-    <main>
-
-        <section id="game">
-            <iframe 
-                class="game-iframe" 
-                src="https://www.crazygames.com/embed/space-waves"
-                title="Space Waves Game"
-                frameborder="0" 
-                allow="gamepad *;"
-                loading="lazy"
-                allowfullscreen
-            ></iframe>
-        </section>
-<!--         <section class="hero">
-            <div class="hero-content">
-                <h1>Play Space Waves online</h1>
-                <p>Embark on an epic journey through space tunnels in this thrilling side-scrolling adventure</p>
-                <a href="#game" class="cta-button">Start Playing</a>
-            </div>
-        </section> -->
-        <section id="about">
-            <h2>About Space Waves</h2>
-            <p>Space Waves is an exciting side-scrolling game that combines fast-paced action and challenges. Navigate through space tunnels filled with obstacles, destroy enemy spaceships, and collect power-ups to increase your score.</p>
-        </section>
-
-        <!-- Game Instructions Section -->
-        <section id="instructions">
-            <h2>How to Play</h2>
-            <div class="game-features">
-                <div class="feature-card">
-                    <h3>Controls</h3>
-                    <p>Use mouse or spacebar to control your spacecraft</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Objectives</h3>
-                    <p>Navigate through obstacles and collect power-ups</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Scoring</h3>
-                    <p>Earn points by destroying enemies and completing levels</p>
-                </div>
+    <main class="pt-20">
+        <!-- Game Section -->
+        <section id="game" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="relative rounded-xl overflow-hidden shadow-2xl">
+                <iframe 
+                    class="w-full h-[600px] md:h-[700px]"
+                    src="https://www.crazygames.com/embed/space-waves"
+                    title="Space Waves Game"
+                    frameborder="0"
+                    allow="gamepad *;"
+                    loading="lazy"
+                    allowfullscreen
+                ></iframe>
             </div>
         </section>
 
-        <!-- Statistics Section -->
-        <section id="statistics">
-            <h2>Game Statistics</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">1M+</div>
-                    <p>Total Players</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">33</div>
-                    <p>Unique Levels</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">4.8</div>
-                    <p>Player Rating</p>
-                </div>
-            </div>
-        </section>
+        <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="prose prose-invert max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">About Space Waves</h2>
+        
+        <div class="space-y-6 text-lg">
+            <p>
+                Space Waves stands at the forefront of modern arcade gaming, offering an exhilarating side-scrolling adventure that masterfully combines fast-paced action with strategic challenges. Released in April 2024 by do.games, Space Waves has quickly established itself as a compelling addition to the arcade game genre, capturing the attention of players worldwide with its unique blend of classic gameplay mechanics and modern design elements.
+            </p>
 
-        <!-- Testimonials Section -->
-        <section id="testimonials">
-            <h2>Player Reviews</h2>
-            <div class="testimonials">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"One of the most addictive space games I've ever played. The challenges keep getting better!"</p>
-                    <p class="testimonial-author">- Alex M.</p>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Perfect balance of difficulty and fun. Love the power-up system!"</p>
-                    <p class="testimonial-author">- Sarah K.</p>
-                </div>
-            </div>
-        </section>
+            <p>
+                At its core, Space Waves challenges players to navigate through intricately designed space tunnels, where split-second decisions determine survival. The game's innovative control system, utilizing either mouse, spacebar, or touch screen inputs, provides precise control over your spacecraft, making every movement crucial in the vast expanse of space. This accessibility in controls makes Space Waves appealing to both casual players and hardcore gaming enthusiasts.
+            </p>
 
-        <!-- Newsletter Section -->
-        <section id="newsletter">
-            <h2>Stay Updated</h2>
-            <p>Subscribe to get news about updates and special events</p>
-            <form class="newsletter-form">
-                <input type="email" class="form-input" placeholder="Enter your email" required>
-                <button type="submit" class="cta-button">Subscribe</button>
-            </form>
-        </section>
+            <p>
+                One of the most distinctive features of Space Waves is its comprehensive level structure, featuring 33 meticulously crafted levels. Each level in Space Waves is thoughtfully categorized using emoji indicators, providing players with clear difficulty expectations. The "Green" levels offer more generous spacing and manageable angles, perfect for mastering the fundamental mechanics of arrow speed control and spatial awareness.
+            </p>
 
-        <!-- FAQ Section -->
-        <section id="faq">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <div class="faq-question">How do I start playing Space Waves?</div>
-                <div class="faq-answer">Simply click the "Play Now" button and the game will load in your browser. No download required!</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Is Space Waves free to play?</div>
-                <div class="faq-answer">Yes, Space Waves is completely free to play in your web browser.</div>
-            </div>
-        </section>
+            <p>
+                The combat system in Space Waves adds another layer of complexity to the gameplay. Players must balance their focus between navigation and combat, as enemy spaceships regularly appear, firing projectiles that must be avoided or countered. Successfully destroying these hostile vessels not only awards points but also potentially drops power-ups, creating a risk-reward dynamic that keeps players engaged throughout their journey.
+            </p>
+
+            <p>
+                Space Waves features two distinct game modes that cater to different playstyles. The World 1 mode serves as an excellent entry point, offering a more structured and gradual difficulty progression that helps new players acclimate to the game's mechanics. In contrast, the Endless mode in Space Waves presents an infinite challenge, where players must rely on their reflexes and growing expertise to achieve ever-higher scores in procedurally generated tunnels.
+            </p>
+
+            <p>
+                The power-up system in Space Waves adds strategic depth to the gameplay. Players can enhance their spacecraft's capabilities through various power-ups, including increased firepower for more effective enemy elimination, temporary invulnerability for navigating particularly challenging sections, and time dilation effects that provide crucial moments of relief during intense sequences.
+            </p>
+
+            <p>
+                What truly sets Space Waves apart is its endlessly generated space tunnels, ensuring that no two playthroughs are exactly alike. This procedural generation system keeps the experience fresh and challenging, as players must constantly adapt to new obstacle configurations and enemy patterns. The game's difficulty scaling ensures that as players progress, the challenges evolve to match their growing skill level.
+            </p>
+
+            <p>
+                The visual design of Space Waves creates an immersive space atmosphere, with dynamic lighting effects and smooth animations that enhance the gaming experience without compromising performance. The game's optimized performance ensures that players can focus entirely on the challenging gameplay without technical distractions.
+            </p>
+
+            <p>
+                Whether you're a newcomer to arcade games or a seasoned player seeking a new challenge, Space Waves offers an engaging experience that rewards dedication and skill improvement. The game's precise control system, combined with its variety of challenges and power-ups, creates an addictive gameplay loop that keeps players coming back for more.
+            </p>
+        </div>
+    </div>
+</section>
 
 
-        <section id="features">
-            <h2>Experience Space Waves</h2>
-            <div class="game-features">
-                <div class="feature-card">
-                    <h3>33 Exciting Levels</h3>
+        <!-- Features Section -->
+        <section id="features" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Game Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-xl transition duration-300 hover:-translate-y-2">
+                    <h3 class="text-xl font-bold mb-4">33 Exciting Levels</h3>
                     <p>Challenge yourself with varying difficulty levels marked by emojis</p>
                 </div>
-                <div class="feature-card">
-                    <h3>Multiple Game Modes</h3>
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-xl transition duration-300 hover:-translate-y-2">
+                    <h3 class="text-xl font-bold mb-4">Multiple Game Modes</h3>
                     <p>Choose between World 1 and Endless mode for different gaming experiences</p>
                 </div>
-                <div class="feature-card">
-                    <h3>Power-ups & Rewards</h3>
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-xl transition duration-300 hover:-translate-y-2">
+                    <h3 class="text-xl font-bold mb-4">Power-ups & Rewards</h3>
                     <p>Collect power-ups and destroy enemy spaceships to boost your score</p>
                 </div>
             </div>
         </section>
 
+        <!-- Statistics Section -->
+        <section id="statistics" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-black/20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Game Statistics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-xl text-center">
+                    <div class="text-4xl font-bold text-[#3498db] mb-2">1M+</div>
+                    <p class="text-lg">Total Players</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-xl text-center">
+                    <div class="text-4xl font-bold text-[#3498db] mb-2">33</div>
+                    <p class="text-lg">Unique Levels</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-xl text-center">
+                    <div class="text-4xl font-bold text-[#3498db] mb-2">4.8</div>
+                    <p class="text-lg">Player Rating</p>
+                </div>
+            </div>
+        </section>
 
-
-
+        <!-- Newsletter Section -->
+        <section id="newsletter" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Stay Updated</h2>
+                <p class="text-lg mb-8">Subscribe to get news about updates and special events</p>
+                <form class="space-y-4">
+                    <input 
+                        type="email" 
+                        class="w-full px-4 py-3 bg-white/10 rounded-lg focus:ring-2 focus:ring-[#3498db] text-white"
+                        placeholder="Enter your email" 
+                        required
+                    >
+                    <button type="submit" class="w-full md:w-auto px-6 py-3 bg-[#3498db] text-white font-bold rounded-lg 
+                                               transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; <span id="year"></span> Space Waves. All rights reserved.</p>
+    <footer class="bg-black/80 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p>&copy; <span id="year"></span> Space Waves. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
-    <!-- Deferred JavaScript -->
+    <!-- Scripts -->
     <script>
         // Update copyright year
         document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Intersection Observer for lazy loading
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        // Observe feature cards
-        document.querySelectorAll('.feature-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Error handling for iframe
-        document.querySelector('.game-iframe').onerror = function() {
-            this.style.display = 'none';
-            console.error('Failed to load game iframe');
-        };
-
-        // FAQ Toggle
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.parentElement;
-                faqItem.classList.toggle('active');
-            });
-        });
-
-        // Game Loading Handler
-        window.addEventListener('load', () => {
-            const gameIframe = document.querySelector('.game-iframe');
-            const loadingOverlay = document.querySelector('.loading-overlay');
-            
-            if (gameIframe && loadingOverlay) {
-                gameIframe.onload = () => {
-                    loadingOverlay.style.display = 'none';
-                };
-            }
-        });
-
-        // Newsletter Form Handler
-        document.querySelector('.newsletter-form')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Add your newsletter subscription logic here
-            alert('Thank you for subscribing!');
-        });
     </script>
 </body>
 </html>
-
