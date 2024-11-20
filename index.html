@@ -190,6 +190,154 @@
                 display: none;
             }
         }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid var(--secondary-color);
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg) }
+            100% { transform: rotate(360deg) }
+        }
+
+        /* Game Container Enhancement */
+        .game-container {
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 30px rgba(52, 152, 219, 0.2);
+        }
+
+        /* Statistics Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Newsletter Form */
+        .newsletter-form {
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-question {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 1rem;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Social Share Buttons */
+        .social-share {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .share-button {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .share-button.twitter {
+            background: #1DA1F2;
+        }
+
+        .share-button.facebook {
+            background: #4267B2;
+        }
     </style>
 </head>
 <body>
@@ -215,11 +363,91 @@
                 allowfullscreen
             ></iframe>
         </section>
-        <section class="hero">
+<!--         <section class="hero">
             <div class="hero-content">
                 <h1>Play Space Waves online</h1>
                 <p>Embark on an epic journey through space tunnels in this thrilling side-scrolling adventure</p>
                 <a href="#game" class="cta-button">Start Playing</a>
+            </div>
+        </section> -->
+        <section id="about">
+            <h2>About Space Waves</h2>
+            <p>Space Waves is an exciting side-scrolling game that combines fast-paced action and challenges. Navigate through space tunnels filled with obstacles, destroy enemy spaceships, and collect power-ups to increase your score.</p>
+        </section>
+
+        <!-- Game Instructions Section -->
+        <section id="instructions">
+            <h2>How to Play</h2>
+            <div class="game-features">
+                <div class="feature-card">
+                    <h3>Controls</h3>
+                    <p>Use mouse or spacebar to control your spacecraft</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Objectives</h3>
+                    <p>Navigate through obstacles and collect power-ups</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Scoring</h3>
+                    <p>Earn points by destroying enemies and completing levels</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section id="statistics">
+            <h2>Game Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1M+</div>
+                    <p>Total Players</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">33</div>
+                    <p>Unique Levels</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.8</div>
+                    <p>Player Rating</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials">
+            <h2>Player Reviews</h2>
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"One of the most addictive space games I've ever played. The challenges keep getting better!"</p>
+                    <p class="testimonial-author">- Alex M.</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Perfect balance of difficulty and fun. Love the power-up system!"</p>
+                    <p class="testimonial-author">- Sarah K.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section id="newsletter">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to get news about updates and special events</p>
+            <form class="newsletter-form">
+                <input type="email" class="form-input" placeholder="Enter your email" required>
+                <button type="submit" class="cta-button">Subscribe</button>
+            </form>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">How do I start playing Space Waves?</div>
+                <div class="faq-answer">Simply click the "Play Now" button and the game will load in your browser. No download required!</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is Space Waves free to play?</div>
+                <div class="faq-answer">Yes, Space Waves is completely free to play in your web browser.</div>
             </div>
         </section>
 
@@ -244,10 +472,7 @@
 
 
 
-        <section id="about">
-            <h2>About Space Waves</h2>
-            <p>Space Waves is an exciting side-scrolling game that combines fast-paced action and challenges. Navigate through space tunnels filled with obstacles, destroy enemy spaceships, and collect power-ups to increase your score.</p>
-        </section>
+
     </main>
 
     <footer>
@@ -280,6 +505,33 @@
             this.style.display = 'none';
             console.error('Failed to load game iframe');
         };
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Game Loading Handler
+        window.addEventListener('load', () => {
+            const gameIframe = document.querySelector('.game-iframe');
+            const loadingOverlay = document.querySelector('.loading-overlay');
+            
+            if (gameIframe && loadingOverlay) {
+                gameIframe.onload = () => {
+                    loadingOverlay.style.display = 'none';
+                };
+            }
+        });
+
+        // Newsletter Form Handler
+        document.querySelector('.newsletter-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Add your newsletter subscription logic here
+            alert('Thank you for subscribing!');
+        });
     </script>
 </body>
 </html>
