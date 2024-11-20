@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Space Waves - An exciting side-scrolling space adventure game with 33 challenging levels. Navigate through space tunnels, dodge obstacles, and collect power-ups.">
+    <meta name="keywords" content="Space Waves, space game, arcade game, side-scrolling game">
+    <meta name="author" content="do.games">
+    <meta name="theme-color" content="#1a1a2e">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Space Waves - Space Adventure Game">
+    <meta property="og:description" content="Play Space Waves, an exciting side-scrolling space adventure game">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://spacewaves.app">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <title>Space Waves - Exciting Space Adventure Game</title>
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Critical CSS -->
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #ecf0f1;
+            --background-dark: #1a1a2e;
+            --background-light: #16213e;
+        }
+
+        /* Reset & Base Styles */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, var(--background-dark) 0%, var(--background-light) 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Performance Optimizations */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Layout Components */
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav {
+            max-width: min(1200px, 90%);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-content {
+            max-width: min(800px, 90%);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: transform 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 5rem 2rem;
+            max-width: min(1200px, 90%);
+            margin: 0 auto;
+        }
+
+        .game-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 10px;
+            margin: 2rem 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* Accessibility & Focus States */
+        .cta-button:focus,
+        .logo:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .game-iframe {
+                height: 400px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .header,
+            .cta-button,
+            .game-iframe {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="logo" aria-label="Space Waves Home">Space Waves</a>
+            <div class="nav-links">
+                <a href="#game" class="cta-button">Play Now</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to Space Waves</h1>
+                <p>Embark on an epic journey through space tunnels in this thrilling side-scrolling adventure</p>
+                <a href="#game" class="cta-button">Start Playing</a>
+            </div>
+        </section>
+
+        <section id="features">
+            <h2>Experience Space Waves</h2>
+            <div class="game-features">
+                <div class="feature-card">
+                    <h3>33 Exciting Levels</h3>
+                    <p>Challenge yourself with varying difficulty levels marked by emojis</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Multiple Game Modes</h3>
+                    <p>Choose between World 1 and Endless mode for different gaming experiences</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Power-ups & Rewards</h3>
+                    <p>Collect power-ups and destroy enemy spaceships to boost your score</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="game">
+            <h2>Play Space Waves</h2>
+            <iframe 
+                class="game-iframe" 
+                src="https://www.crazygames.com/embed/space-waves"
+                title="Space Waves Game"
+                loading="lazy"
+                allowfullscreen
+            ></iframe>
+        </section>
+
+        <section id="about">
+            <h2>About Space Waves</h2>
+            <p>Space Waves is an exciting side-scrolling game that combines fast-paced action and challenges. Navigate through space tunnels filled with obstacles, destroy enemy spaceships, and collect power-ups to increase your score.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Space Waves. All rights reserved.</p>
+    </footer>
+
+    <!-- Deferred JavaScript -->
+    <script>
+        // Update copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Intersection Observer for lazy loading
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Error handling for iframe
+        document.querySelector('.game-iframe').onerror = function() {
+            this.style.display = 'none';
+            console.error('Failed to load game iframe');
+        };
+    </script>
+</body>
+</html>
+
